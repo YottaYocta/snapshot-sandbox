@@ -1,0 +1,23 @@
+---
+---
+
+<div
+  id="tilt-card"
+  class="w-36 h-48 rounded-2xl border border-gray-200 bg-white shadow-md flex items-end p-4 cursor-pointer select-none"
+  style="transform-style: preserve-3d; transition: transform 0.05s ease-out;"
+>
+  <span class="text-xs text-gray-400 font-medium" style="transform: translateZ(12px)">tilt card</span>
+</div>
+
+<script>
+  const card = document.getElementById("tilt-card") as HTMLElement;
+
+  window.addEventListener("mousemove", (e: MouseEvent) => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / (window.innerWidth / 2);
+    const dy = (e.clientY - cy) / (window.innerHeight / 2);
+    card.style.transform = `perspective(600px) rotateY(${dx * 24}deg) rotateX(${-dy * 24}deg) scale(1.04)`;
+  });
+</script>

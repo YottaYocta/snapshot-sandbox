@@ -6,6 +6,7 @@ import StepsToReproduce from "../components/StepsToReproduce.astro";
 import StyledInlineText from "../components/StyledInlineText.astro";
 import RotatedCards from "../components/RotatedCards.astro";
 import DiagonalButtons from "../components/DiagonalButtons.astro";
+import TiltCard from "../components/TiltCard.astro";
 import img from "../assets/image.png";
 import IssueTitle from "../components/IssueTitle.astro";
 import timestamps from "../data/component-timestamps.json";
@@ -197,7 +198,6 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
         </div>
       </IssueRow>
 
-      <!-- complex transforms -->
       <IssueRow id="complex-transforms">
         <IssueTitle
           slot="title"
@@ -205,9 +205,11 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
           ago={rotatedTs.ago}
           human={rotatedTs.human}>Complex transforms</IssueTitle
         >
-        <div slot="component"><RotatedCards /></div>
+        <div slot="component" class="flex flex-col gap-8 items-center">
+          <RotatedCards /><TiltCard />
+        </div>
         <div slot="notes">
-          Visually works for me. rotation also preserved in editor
+          Rotation preserved in editor for rotation example. Skew not preserved
         </div>
       </IssueRow>
     </div>
