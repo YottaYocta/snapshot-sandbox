@@ -1,12 +1,84 @@
 ---
-import { Image } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import img from '../assets/image.png';
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import StepsToReproduce from "../components/StepsToReproduce.astro";
+import img from "../assets/image.png";
 ---
 
 <Layout>
-	<div style="display: flex; justify-content: center; align-items: center; height: 100vh; gap: 2rem;">
-		<Image src={img} alt="Image" />
-		<img src={img.src} alt="Image" />
-	</div>
+  <Sidebar />
+  <!-- Section 1: two images side by side -->
+  <section
+    id="localhost-paste"
+    class="flex flex-col items-center justify-center min-h-screen gap-10 px-6"
+  >
+    <div class="flex gap-12 items-start justify-center">
+      <figure class="flex flex-col items-center gap-3">
+        <Image
+          src={img}
+          alt="paste fails when copying images from localhost"
+          width={120}
+          height={120}
+        />
+        <figcaption class="text-sm text-gray-500 font-medium">
+          Optimized Astro {"<Image>"} component
+        </figcaption>
+      </figure>
+      <figure class="flex flex-col items-center gap-3">
+        <img
+          src={img.src}
+          alt="paste fails when copying images from localhost"
+          width="120"
+          height="120"
+        />
+        <figcaption class="text-sm text-gray-500 font-medium">
+          Normal Image
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="max-w-lg w-full">
+      <StepsToReproduce>
+        <li>
+          Clone the repo:
+          <span class="inline-flex items-center gap-2 mt-1">
+            <code class="font-mono text-xs bg-gray-100 px-2 py-0.5 rounded">https://github.com/YottaYocta/paper-localhost-snapshot</code>
+            <button
+              onclick="navigator.clipboard.writeText('https://github.com/YottaYocta/paper-localhost-snapshot')"
+              class="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 rounded px-2 py-0.5 transition-colors cursor-pointer"
+            >copy</button>
+          </span>
+        </li>
+        <li>Run the dev server and open the page in a browser.</li>
+        <li>Copy one of the images above from the page.</li>
+        <li>Paste into the Paper editor.</li>
+      </StepsToReproduce>
+    </div>
+  </section>
+
+  <!-- Section 2: card -->
+  <section
+    id="max-width-paste"
+    class="flex justify-center items-center py-24 px-6 bg-gray-50"
+  >
+    <div
+      class="max-w-lg w-full rounded-2xl border border-gray-200 bg-white shadow-sm p-8"
+    >
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">
+        Max-width is kept when pasting snapshots to Paper.
+      </h2>
+      <p class="text-sm text-gray-500 leading-relaxed mb-4">
+        When an element with a <code class="font-mono bg-gray-100 px-1 rounded text-xs">max-width</code> is copied and pasted into Paper, the pasted node inherits the constraint.
+        Dragging the width handle beyond the original <code class="font-mono bg-gray-100 px-1 rounded text-xs">max-width</code> has no effect, and there seems to be no way to overwrite the constraint without creating a new element.
+      </p>
+      <div class="border-t border-gray-100 pt-4">
+        <StepsToReproduce>
+          <li>Copy this element from the browser.</li>
+          <li>Paste it into the Paper editor.</li>
+          <li>Try to increase the pasted node's width beyond its max-width.</li>
+        </StepsToReproduce>
+      </div>
+    </div>
+  </section>
 </Layout>

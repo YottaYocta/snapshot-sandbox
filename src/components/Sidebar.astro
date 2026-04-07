@@ -1,0 +1,59 @@
+---
+const sections = [
+  { id: "localhost-paste", label: "Localhost paste" },
+  { id: "max-width-paste", label: "Max-width paste" },
+];
+---
+
+<nav
+  id="sidebar"
+  class="fixed left-6 top-12 -translate-y-1/2 z-50 flex flex-col gap-4"
+>
+  {
+    sections.map((s) => (
+      <a
+        href={`#${s.id}`}
+        data-section={s.id}
+        class="sidebar-link group flex items-center gap-3 no-underline"
+      >
+        <span
+          data-dot={s.id}
+          class="block w-2 h-2 rounded-full bg-gray-300 transition-all duration-200 group-hover:bg-gray-500"
+        />
+        <span class="text-xs text-gray-400 whitespace-nowrap">{s.label}</span>
+      </a>
+    ))
+  }
+</nav>
+
+<script>
+  const dots = document.querySelectorAll<HTMLElement>("[data-dot]");
+  const sections = Array.from(
+    document.querySelectorAll<HTMLElement>("section[id]"),
+  );
+
+  function setActive(id: string) {
+    dots.forEach((dot) => {
+      const active = dot.dataset.dot === id;
+      dot.classList.toggle("bg-gray-800", active);
+      dot.classList.toggle("scale-125", active);
+      dot.classList.toggle("bg-gray-300", !active);
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          setActive((entry.target as HTMLElement).id);
+        }
+      }
+    },
+    { threshold: 0.5 },
+  );
+
+  sections.forEach((s) => observer.observe(s));
+
+  // Set initial active state
+  if (sections[0]) setActive(sections[0].id);
+</script>
