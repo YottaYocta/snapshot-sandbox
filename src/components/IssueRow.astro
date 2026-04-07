@@ -1,0 +1,17 @@
+---
+
+---
+
+<div
+  class="flex gap-20 items-start py-8 border-b border-gray-100 last:border-0"
+>
+  <div class="w-52 shrink-0 font-medium text-gray-900 text-sm">
+    <slot name="title" />
+  </div>
+  <div class="w-72 shrink-0">
+    <slot name="component" />
+  </div>
+  <div class="flex-1 min-w-0 text-sm text-gray-500 leading-relaxed">
+    <slot name="notes" />
+  </div>
+</div>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  ago: string;
+  human: string;
+}
+const { ago, human } = Astro.props;
+---
+
+<div class="flex flex-col gap-1">
+  <p><slot /></p>
+  <span class="text-xs text-gray-400 font-normal mt-1">
+    <p>last commit {ago}</p>
+  </span>
+</div>

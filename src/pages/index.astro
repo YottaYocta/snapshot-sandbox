@@ -1,92 +1,181 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import Sidebar from "../components/Sidebar.astro";
+import IssueRow from "../components/IssueRow.astro";
 import StepsToReproduce from "../components/StepsToReproduce.astro";
+import StyledInlineText from "../components/StyledInlineText.astro";
+import RotatedCards from "../components/RotatedCards.astro";
+import DiagonalButtons from "../components/DiagonalButtons.astro";
 import img from "../assets/image.png";
+import IssueTitle from "../components/IssueTitle.astro";
+import timestamps from "../data/component-timestamps.json";
+
+function commitLabel(iso: string): { ago: string; human: string } {
+  if (!iso) return { ago: "never", human: "" };
+  const date = new Date(iso);
+  const diff = Date.now() - date.getTime();
+  const mins = Math.floor(diff / 60000);
+  let ago: string;
+  if (mins < 1) ago = "just now";
+  else if (mins < 60) ago = `${mins}m ago`;
+  else if (mins < 1440) ago = `${Math.floor(mins / 60)}h ago`;
+  else ago = `${Math.floor(mins / 1440)}d ago`;
+  const human = date.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+  return { ago, human };
+}
+
+const ts = (key: string) =>
+  commitLabel((timestamps as Record<string, string>)[key] ?? "");
+
+const pageTs = ts("src/pages/index.astro");
+const styledTs = ts("src/components/StyledInlineText.astro");
+const diagonalTs = ts("src/components/DiagonalButtons.astro");
+const rotatedTs = ts("src/components/RotatedCards.astro");
 ---
 
 <Layout>
-  <Sidebar />
-  <!-- Section 1: two images side by side -->
-  <section
-    id="localhost-paste"
-    class="flex flex-col items-center justify-center min-h-screen gap-10 px-6"
+  <main
+    class="min-h-screen flex flex-col justify-center items-center px-12 py-16"
   >
-    <div class="flex gap-12 items-start justify-center">
-      <figure class="flex flex-col items-center gap-3">
-        <Image
-          src={img}
-          alt="paste fails when copying images from localhost"
-          width={120}
-          height={120}
-        />
-        <figcaption class="text-sm text-gray-500 font-medium">
-          Optimized Astro {"<Image>"} component
-        </figcaption>
-      </figure>
-      <figure class="flex flex-col items-center gap-3">
-        <img
-          src={img.src}
-          alt="paste fails when copying images from localhost"
-          width="120"
-          height="120"
-        />
-        <figcaption class="text-sm text-gray-500 font-medium">
-          Normal Image
-        </figcaption>
-      </figure>
-    </div>
-
-    <div class="max-w-lg w-full">
-      <StepsToReproduce>
-        <li>
-          Clone the repo:
-          <span class="inline-flex items-center gap-2 mt-1">
-            <code class="font-mono text-xs bg-gray-100 px-2 py-0.5 rounded"
-              >https://github.com/YottaYocta/paper-localhost-snapshot</code
-            >
-            <button
-              onclick="navigator.clipboard.writeText('https://github.com/YottaYocta/paper-localhost-snapshot')"
-              class="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 rounded px-2 py-0.5 transition-colors cursor-pointer"
-              >copy</button
-            >
-          </span>
-        </li>
-        <li>Run the dev server and open the page in a browser.</li>
-        <li>Copy one of the images above from the page.</li>
-        <li>Paste into the Paper editor.</li>
-      </StepsToReproduce>
-    </div>
-  </section>
-
-  <!-- Section 2: card -->
-  <section
-    id="max-width-paste"
-    class="flex justify-center items-center py-24 px-6 bg-gray-50"
-  >
-    <div
-      class="max-w-lg min-w-lg w-full rounded-2xl border border-gray-200 bg-white shadow-sm p-8"
-    >
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">
-        Max/min-width is kept when pasting snapshots to Paper.
-      </h2>
-      <p class="text-sm text-gray-500 leading-relaxed mb-4">
-        When an element with a <code
-          class="font-mono bg-gray-100 px-1 rounded text-xs">max-width</code
-        > (or a similar max/min constraint) is copied and pasted into Paper, the pasted
-        node inherits the constraint. Dragging the width handle beyond the original
-        <code class="font-mono bg-gray-100 px-1 rounded text-xs">max-width</code
-        > has no effect, and there seems to be no way to overwrite the constraint
-        without creating a new element.
-      </p>
-      <div class="border-t border-gray-100 pt-4">
-        <StepsToReproduce>
-          <li>Copy this element from the browser.</li>
-          <li>Paste it into the Paper editor.</li>
-          <li>Try to increase the pasted node's width beyond its max-width.</li>
-        </StepsToReproduce>
+    <div class="w-full max-w-6xl">
+      <div class="flex gap-20 pb-3 border-b border-gray-200">
+        <div
+          class="w-52 shrink-0 text-xs font-semibold text-gray-400 uppercase tracking-wide"
+        >
+          Experiment
+        </div>
+        <div
+          class="w-72 shrink-0 text-xs font-semibold text-gray-400 uppercase tracking-wide"
+        >
+          Component
+        </div>
+        <div
+          class="flex-1 text-xs font-semibold text-gray-400 uppercase tracking-wide"
+        >
+          Notes & Reproduction
+        </div>
       </div>
+
+      <!-- localhost paste -->
+      <IssueRow>
+        <IssueTitle slot="title" ago={pageTs.ago} human={pageTs.human}>Paste fails when copying images from localhost</IssueTitle>
+        <div slot="component" class="flex gap-8 items-start">
+          <figure class="flex flex-col items-center gap-2">
+            <Image
+              src={img}
+              alt="Astro Image component"
+              width={100}
+              height={100}
+            />
+            <figcaption class="text-xs text-gray-400">
+              {"<Image>"} component
+            </figcaption>
+          </figure>
+          <figure class="flex flex-col items-center gap-2">
+            <img src={img.src} alt="img element" width="100" height="100" />
+            <figcaption class="text-xs text-gray-400">
+              {"<img>"} element
+            </figcaption>
+          </figure>
+        </div>
+        <div slot="notes">
+          <StepsToReproduce>
+            <li>
+              Clone the repo:
+              <span class="inline-flex items-center gap-2 mt-1">
+                <code class="font-mono text-xs bg-gray-100 px-2 py-0.5 rounded"
+                  >https://github.com/YottaYocta/paper-localhost-snapshot</code
+                >
+                <button
+                  onclick="navigator.clipboard.writeText('https://github.com/YottaYocta/paper-localhost-snapshot')"
+                  class="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 rounded px-2 py-0.5 transition-colors cursor-pointer"
+                  >copy</button
+                >
+              </span>
+            </li>
+            <li>Run the dev server and open the page in a browser.</li>
+            <li>Copy one of the images in the component column.</li>
+            <li>Paste into the Paper editor.</li>
+          </StepsToReproduce>
+        </div>
+      </IssueRow>
+
+      <!-- max-width paste -->
+      <IssueRow>
+        <IssueTitle slot="title" ago={pageTs.ago} human={pageTs.human}>Max/min-width is kept when pasting snapshots to Paper</IssueTitle>
+        <div slot="component">
+          <div
+            class="max-w-xs min-w-xs rounded-xl border border-gray-200 bg-white shadow-sm p-5"
+          >
+            <p class="text-xs font-semibold text-gray-700 mb-1">
+              Card with max-width
+            </p>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              This element has <code class="font-mono bg-gray-100 px-1 rounded"
+                >max-width</code
+              > and <code class="font-mono bg-gray-100 px-1 rounded"
+                >min-width</code
+              > set. Copy and paste it into Paper.
+            </p>
+          </div>
+        </div>
+        <div slot="notes">
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">
+            When an element with a <code
+              class="font-mono bg-gray-100 px-1 rounded text-xs">max-width</code
+            > (or min-width) constraint is copied and pasted into Paper, the pasted
+            node inherits the constraint. There is no way to overwrite it without
+            creating a new element.
+          </p>
+          <StepsToReproduce>
+            <li>Copy the card in the component column.</li>
+            <li>Paste it into the Paper editor.</li>
+            <li>
+              Try to increase the pasted node's width beyond its max-width.
+            </li>
+          </StepsToReproduce>
+        </div>
+      </IssueRow>
+
+      <!-- inline styled text -->
+      <IssueRow>
+        <IssueTitle slot="title" ago={styledTs.ago} human={styledTs.human}>Inline styled text</IssueTitle>
+        <div slot="component"><StyledInlineText /></div>
+        <div slot="notes">
+          Snapshot splits non-span elements into their own style, but eliminates
+          any styling within a {"<p>"} tag if done through a span
+        </div>
+      </IssueRow>
+
+      <!-- diagonal buttons -->
+      <IssueRow>
+        <IssueTitle slot="title" ago={diagonalTs.ago} human={diagonalTs.human}>Diagonal buttons</IssueTitle>
+        <div slot="component"><DiagonalButtons /></div>
+        <div slot="notes">
+          <code class="font-mono text-xs bg-gray-100 px-1 rounded"
+            >clip-path</code
+          > button preserved when copied to paper, but doesn't seem to be any option
+          to edit. The other uses <code
+            class="font-mono text-xs bg-gray-100 px-1 rounded">skew</code
+          > and loses its styling
+        </div>
+      </IssueRow>
+
+      <!-- complex transforms -->
+      <IssueRow>
+        <IssueTitle slot="title" ago={rotatedTs.ago} human={rotatedTs.human}>Complex transforms</IssueTitle>
+        <div slot="component"><RotatedCards /></div>
+        <div slot="notes">
+          Visually works for me. rotation also preserved in editor
+        </div>
+      </IssueRow>
     </div>
-  </section>
+  </main>
 </Layout>
