@@ -64,8 +64,8 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
       </div>
 
       <!-- localhost paste -->
-      <IssueRow>
-        <IssueTitle slot="title" ago={pageTs.ago} human={pageTs.human}>Paste fails when copying images from localhost</IssueTitle>
+      <IssueRow id="localhost-paste">
+        <IssueTitle slot="title" id="localhost-paste" ago={pageTs.ago} human={pageTs.human}>Paste fails when copying images from localhost</IssueTitle>
         <div slot="component" class="flex gap-8 items-start">
           <figure class="flex flex-col items-center gap-2">
             <Image
@@ -108,8 +108,8 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
       </IssueRow>
 
       <!-- max-width paste -->
-      <IssueRow>
-        <IssueTitle slot="title" ago={pageTs.ago} human={pageTs.human}>Max/min-width is kept when pasting snapshots to Paper</IssueTitle>
+      <IssueRow id="max-width-paste">
+        <IssueTitle slot="title" id="max-width-paste" ago={pageTs.ago} human={pageTs.human}>Max/min-width is kept when pasting snapshots to Paper</IssueTitle>
         <div slot="component">
           <div
             class="max-w-xs min-w-xs rounded-xl border border-gray-200 bg-white shadow-sm p-5"
@@ -145,8 +145,8 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
       </IssueRow>
 
       <!-- inline styled text -->
-      <IssueRow>
-        <IssueTitle slot="title" ago={styledTs.ago} human={styledTs.human}>Inline styled text</IssueTitle>
+      <IssueRow id="inline-styled-text">
+        <IssueTitle slot="title" id="inline-styled-text" ago={styledTs.ago} human={styledTs.human}>Inline styled text</IssueTitle>
         <div slot="component"><StyledInlineText /></div>
         <div slot="notes">
           Snapshot splits non-span elements into their own style, but eliminates
@@ -155,8 +155,8 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
       </IssueRow>
 
       <!-- diagonal buttons -->
-      <IssueRow>
-        <IssueTitle slot="title" ago={diagonalTs.ago} human={diagonalTs.human}>Diagonal buttons</IssueTitle>
+      <IssueRow id="diagonal-buttons">
+        <IssueTitle slot="title" id="diagonal-buttons" ago={diagonalTs.ago} human={diagonalTs.human}>Diagonal buttons</IssueTitle>
         <div slot="component"><DiagonalButtons /></div>
         <div slot="notes">
           <code class="font-mono text-xs bg-gray-100 px-1 rounded"
@@ -169,8 +169,8 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
       </IssueRow>
 
       <!-- complex transforms -->
-      <IssueRow>
-        <IssueTitle slot="title" ago={rotatedTs.ago} human={rotatedTs.human}>Complex transforms</IssueTitle>
+      <IssueRow id="complex-transforms">
+        <IssueTitle slot="title" id="complex-transforms" ago={rotatedTs.ago} human={rotatedTs.human}>Complex transforms</IssueTitle>
         <div slot="component"><RotatedCards /></div>
         <div slot="notes">
           Visually works for me. rotation also preserved in editor
