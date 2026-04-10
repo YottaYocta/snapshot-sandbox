@@ -3,8 +3,8 @@ import { Image } from "astro:assets";
 import img from "../assets/image.png";
 ---
 
-<div class="flex gap-8 items-end flex-wrap">
-  <figure class="flex flex-col items-center gap-2">
+<div class="flex flex-wrap gap-x-4 gap-y-6">
+  <figure class="flex flex-col items-center gap-2 w-27.5">
     <div class="relative w-27.5 h-27.5">
       <Image src={img} alt="" width={100} height={100} />
       <Image
@@ -15,10 +15,10 @@ import img from "../assets/image.png";
         style="position:absolute;top:10px;left:10px;mix-blend-mode:multiply;filter:hue-rotate(180deg);"
       />
     </div>
-    <figcaption class="text-xs text-gray-400 text-center">multiply + hue-rotate</figcaption>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">multiply + hue-rotate</figcaption>
   </figure>
 
-  <figure class="flex flex-col items-center gap-2">
+  <figure class="flex flex-col items-center gap-2 w-27.5">
     <div class="relative w-27.5 h-27.5">
       <Image src={img} alt="" width={100} height={100} />
       <Image
@@ -29,10 +29,10 @@ import img from "../assets/image.png";
         style="position:absolute;top:10px;left:10px;mix-blend-mode:screen;filter:invert(1);"
       />
     </div>
-    <figcaption class="text-xs text-gray-400 text-center">screen + invert</figcaption>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">screen + invert</figcaption>
   </figure>
 
-  <figure class="flex flex-col items-center gap-2">
+  <figure class="flex flex-col items-center gap-2 w-27.5">
     <div class="relative w-27.5 h-27.5">
       <Image src={img} alt="" width={100} height={100} style="filter:grayscale(1);" />
       <Image
@@ -43,6 +43,174 @@ import img from "../assets/image.png";
         style="position:absolute;top:10px;left:10px;mix-blend-mode:overlay;opacity:0.7;"
       />
     </div>
-    <figcaption class="text-xs text-gray-400 text-center">grayscale + overlay</figcaption>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">grayscale + overlay</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:darken;"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">darken</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:lighten;"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">lighten</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:color-dodge;filter:saturate(2);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">color-dodge + saturate</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:color-burn;filter:hue-rotate(90deg);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">color-burn + hue-rotate</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:hard-light;filter:brightness(1.5);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">hard-light + brightness</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:soft-light;filter:contrast(1.5);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">soft-light + contrast</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:difference;filter:hue-rotate(270deg);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">difference + hue-rotate</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:exclusion;filter:sepia(1);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">exclusion + sepia</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:hue;filter:hue-rotate(120deg);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">hue + hue-rotate</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:saturation;filter:saturate(3);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">saturation + saturate</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} style="filter:grayscale(1);" />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:color;"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">color (on grayscale)</figcaption>
+  </figure>
+
+  <figure class="flex flex-col items-center gap-2 w-27.5">
+    <div class="relative w-27.5 h-27.5">
+      <Image src={img} alt="" width={100} height={100} />
+      <Image
+        src={img}
+        alt=""
+        width={100}
+        height={100}
+        style="position:absolute;top:10px;left:10px;mix-blend-mode:luminosity;filter:invert(1);"
+      />
+    </div>
+    <figcaption class="text-xs text-gray-400 text-center w-full leading-tight">luminosity + invert</figcaption>
   </figure>
 </div>
