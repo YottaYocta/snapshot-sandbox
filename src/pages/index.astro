@@ -84,6 +84,7 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           id="localhost-paste"
           ago={pageTs.ago}
           human={pageTs.human}
+          support="not-supported"
           >Paste fails when copying images from localhost</IssueTitle
         >
         <div slot="component" class="flex gap-8 items-start">
@@ -145,6 +146,7 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           id="max-width-paste"
           ago={pageTs.ago}
           human={pageTs.human}
+          support="not-supported"
           >Max/min-width is kept when pasting snapshots to Paper</IssueTitle
         >
         <div slot="component">
@@ -186,7 +188,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="inline-styled-text"
           ago={styledTs.ago}
-          human={styledTs.human}>Inline styled text</IssueTitle
+          human={styledTs.human}
+          support="not-supported">Inline styled text</IssueTitle
         >
         <div slot="component"><StyledInlineText /></div>
         <div slot="notes">
@@ -200,7 +203,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="diagonal-buttons"
           ago={diagonalTs.ago}
-          human={diagonalTs.human}>Diagonal buttons</IssueTitle
+          human={diagonalTs.human}
+          support="partial">Diagonal buttons</IssueTitle
         >
         <div slot="component"><DiagonalButtons /></div>
         <div slot="notes">
@@ -218,7 +222,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="svg-drop-shadow"
           ago={svgShadowTs.ago}
-          human={svgShadowTs.human}>Stuff with shadows</IssueTitle
+          human={svgShadowTs.human}
+          support="partial">Stuff with shadows</IssueTitle
         >
         <div slot="component">
           <SVGDropShadow />
@@ -238,7 +243,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="image-filters"
           ago={imageFiltersTs.ago}
-          human={imageFiltersTs.human}>Image filters & blend modes</IssueTitle
+          human={imageFiltersTs.human}
+          support="full">Image filters & blend modes</IssueTitle
         >
         <div slot="component"><ImageFilters /></div>
         <div slot="notes">
@@ -257,7 +263,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="element-shader"
           ago={sequenzaTs.ago}
-          human={sequenzaTs.human}>Interactive element-shader</IssueTitle
+          human={sequenzaTs.human}
+          support="not-supported">Interactive element-shader</IssueTitle
         >
         <div slot="component">
           <div class="w-full">
@@ -274,7 +281,8 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
           slot="title"
           id="complex-transforms"
           ago={rotatedTs.ago}
-          human={rotatedTs.human}>Complex transforms</IssueTitle
+          human={rotatedTs.human}
+          support="partial">Complex transforms</IssueTitle
         >
         <div slot="component" class="flex flex-col gap-8 items-center">
           <RotatedCards /><TiltCard />

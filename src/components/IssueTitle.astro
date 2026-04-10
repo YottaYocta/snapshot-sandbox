@@ -3,13 +3,29 @@ interface Props {
   ago: string;
   human: string;
   id: string;
+  support: "full" | "partial" | "not-supported";
 }
-const { ago, human, id } = Astro.props;
+const { ago, human, id, support } = Astro.props;
+
+const chipStyles = {
+  full: "bg-green-50 text-green-500 border border-green-100",
+  partial: "bg-amber-50 text-amber-500 border border-amber-100",
+  "not-supported": "bg-gray-100 text-gray-400 border border-gray-200",
+};
+
+const chipLabels = {
+  full: "full support",
+  partial: "partial support",
+  "not-supported": "not supported",
+};
 ---
 
 <div class="flex flex-col gap-1">
   <a href={`#${id}`} class="no-underline text-gray-900 hover:text-gray-600 transition-colors"><slot /></a>
-  <span class="text-xs text-gray-400 font-normal mt-1">
-    <p>last updated {ago}</p>
+  <span class="text-xs text-gray-400 font-normal mt-0.5" title={human}>
+    last updated {ago}
+  </span>
+  <span class={`inline-flex self-start text-xs px-2 py-0.5 rounded-full mt-1 font-medium ${chipStyles[support]}`}>
+    {chipLabels[support]}
   </span>
 </div>

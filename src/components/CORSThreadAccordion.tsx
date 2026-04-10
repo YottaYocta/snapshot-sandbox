@@ -1,5 +1,32 @@
 import { Accordion } from "@base-ui/react/accordion";
 
+const serverPy = `# Build to dist, then run this file
+from flask import Flask, send_from_directory, abort, make_response
+from flask_cors import CORS
+import os
+
+app = Flask(__name__)
+
+CORS(app, resources={r"/*": {"origins": "https://app.paper.design"}})
+
+@app.route('/')
+def root():
+    return send_from_directory("dist", "index.html")
+
+@app.route('/<path:path>')
+def serve(path):
+    file_path = os.path.join("dist", path)
+
+    if os.path.exists(file_path):
+        response = make_response(send_from_directory("dist", path))
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+        return response
+
+    return abort(404)
+
+app.run(port=8000, debug=True)`;
+
 const items = [
   {
     heading: "Problem",
@@ -21,7 +48,13 @@ const items = [
   },
   {
     heading: "Astro caveat",
-    body: "The same Vite server header config does not work in Astro — the headers appear to have no effect even after a hard reload of the dev server, Paper, and the browser. The working workaround is to run a production build first and snapshot from the built output.",
+    body: "The same Vite server header config does not work in Astro: the headers appear to have no effect even after a hard reload of the dev server, Paper, and the browser. The working workaround is to run a production build first and snapshot from the built output.",
+  },
+  {
+    heading: "Fix for astro (Python/Flask)",
+    body: serverPy,
+    code: true,
+    copy: true,
   },
 ];
 
@@ -54,9 +87,19 @@ export default function CORSThreadAccordion() {
             <Accordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] ease-out data-ending-style:h-0 data-starting-style:h-0">
               <div className="pb-3">
                 {item.code ? (
-                  <pre className="text-xs text-gray-600 bg-gray-50 rounded p-2 whitespace-pre-wrap leading-relaxed">
-                    {item.body}
-                  </pre>
+                  <div className="relative">
+                    <pre className="text-xs text-gray-600 bg-gray-50 rounded p-2 whitespace-pre-wrap leading-relaxed">
+                      {item.body}
+                    </pre>
+                    {item.copy && (
+                      <button
+                        onClick={() => navigator.clipboard.writeText(item.body)}
+                        className="absolute top-2 right-2 text-xs text-gray-400 hover:text-gray-700 border border-gray-200 rounded px-2 py-0.5 transition-colors cursor-pointer bg-gray-50"
+                      >
+                        copy
+                      </button>
+                    )}
+                  </div>
                 ) : (
                   <p className="text-xs text-gray-500 leading-relaxed">
                     {item.body}

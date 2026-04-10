@@ -2,12 +2,12 @@
   "src/components/DiagonalButtons.astro": "2026-04-10T18:39:49.268Z",
   "src/components/ImageFilters.astro": "2026-04-10T19:56:32.842Z",
   "src/components/IssueRow.astro": "2026-04-07T21:54:45.568Z",
-  "src/components/IssueTitle.astro": "2026-04-07T21:47:02.184Z",
+  "src/components/IssueTitle.astro": "2026-04-10T20:06:41.419Z",
   "src/components/RotatedCards.astro": "2026-04-07T21:41:00.275Z",
   "src/components/SVGDropShadow.astro": "2026-04-10T18:39:49.268Z",
   "src/components/Sidebar.astro": "2026-04-07T16:41:26-04:00",
   "src/components/StepsToReproduce.astro": "2026-04-07T16:41:26-04:00",
   "src/components/StyledInlineText.astro": "2026-04-07T21:41:00.275Z",
   "src/components/TiltCard.astro": "2026-04-07T22:07:53.425Z",
-  "src/pages/index.astro": "2026-04-10T19:56:32.842Z"
+  "src/pages/index.astro": "2026-04-10T20:06:41.419Z"
 }
