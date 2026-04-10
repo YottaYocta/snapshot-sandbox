@@ -21,11 +21,17 @@ const chipLabels = {
 ---
 
 <div class="flex flex-col gap-1">
-  <a href={`#${id}`} class="no-underline text-gray-900 hover:text-gray-600 transition-colors"><slot /></a>
+  <a
+    href={`#${id}`}
+    class="no-underline text-gray-900 hover:text-gray-600 transition-colors"
+    ><slot /></a
+  >
   <span class="text-xs text-gray-400 font-normal mt-0.5" title={human}>
     last updated {ago}
   </span>
-  <span class={`inline-flex self-start text-xs px-2 py-0.5 rounded-full mt-1 font-medium ${chipStyles[support]}`}>
+  <span
+    class={`mt-2 inline-flex self-start text-xs px-2 py-0.5 rounded-full font-medium ${chipStyles[support]}`}
+  >
     {chipLabels[support]}
   </span>
 </div>
