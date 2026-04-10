@@ -8,6 +8,7 @@ import RotatedCards from "../components/RotatedCards.astro";
 import DiagonalButtons from "../components/DiagonalButtons.astro";
 import TiltCard from "../components/TiltCard.astro";
 import SVGDropShadow from "../components/SVGDropShadow.astro";
+import ImageFilters from "../components/ImageFilters.astro";
 import SequenzaShader from "../components/SequenzaShader";
 import img from "../assets/image.png";
 import IssueTitle from "../components/IssueTitle.astro";
@@ -43,6 +44,7 @@ const diagonalTs = ts("src/components/DiagonalButtons.astro");
 const rotatedTs = ts("src/components/RotatedCards.astro");
 const svgShadowTs = ts("src/components/SVGDropShadow.astro");
 const sequenzaTs = ts("src/components/SequenzaShader.tsx");
+const imageFiltersTs = ts("src/components/ImageFilters.astro");
 ---
 
 <Layout>
@@ -215,6 +217,26 @@ const sequenzaTs = ts("src/components/SequenzaShader.tsx");
             carried over to paper for both images without background and svg
             elements.
           </p>
+        </div>
+      </IssueRow>
+
+      <IssueRow id="image-filters">
+        <IssueTitle
+          slot="title"
+          id="image-filters"
+          ago={imageFiltersTs.ago}
+          human={imageFiltersTs.human}>Image filters & blend modes</IssueTitle
+        >
+        <div slot="component"><ImageFilters /></div>
+        <div slot="notes">
+          Each example layers an absolutely positioned copy of the image over
+          the original with a CSS <code
+            class="font-mono bg-gray-100 px-1 rounded text-xs"
+            >mix-blend-mode</code
+          > and/or
+          <code class="font-mono bg-gray-100 px-1 rounded text-xs">filter</code> applied
+          to the top layer. Test whether Paper captures the composited result or the
+          raw layers separately.
         </div>
       </IssueRow>
 
