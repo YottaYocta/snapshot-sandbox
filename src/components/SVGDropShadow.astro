@@ -1,0 +1,79 @@
+---
+import astroSvg from '../assets/astro.svg?url';
+---
+
+<div class="flex flex-col gap-6">
+  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide">SVG</p>
+  <div class="flex gap-6 items-end flex-wrap">
+    <figure class="flex flex-col items-center gap-2">
+      <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="fedrop-rect" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="4" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.25" />
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="60" height="60" rx="10" fill="#6366f1" filter="url(#fedrop-rect)" />
+      </svg>
+      <figcaption class="text-xs text-gray-400 text-center">feDropShadow</figcaption>
+    </figure>
+
+    <figure class="flex flex-col items-center gap-2">
+      <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(4px 4px 4px rgba(0,0,0,0.25))">
+        <rect x="10" y="10" width="60" height="60" rx="10" fill="#f43f5e" />
+      </svg>
+      <figcaption class="text-xs text-gray-400 text-center">CSS drop-shadow()</figcaption>
+    </figure>
+
+    <figure class="flex flex-col items-center gap-2">
+      <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="fedrop-circle-colored" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="3" dy="6" stdDeviation="5" flood-color="#6366f1" flood-opacity="0.4" />
+          </filter>
+        </defs>
+        <circle cx="40" cy="40" r="28" fill="#10b981" filter="url(#fedrop-circle-colored)" />
+      </svg>
+      <figcaption class="text-xs text-gray-400 text-center">colored shadow</figcaption>
+    </figure>
+
+    <figure class="flex flex-col items-center gap-2">
+      <img
+        src={astroSvg}
+        alt="Astro logo"
+        width="115"
+        height="48"
+        style="filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.4)); margin: 16px 0;"
+      />
+      <figcaption class="text-xs text-gray-400 text-center">img + drop-shadow()</figcaption>
+    </figure>
+  </div>
+
+  <div class="border-t border-gray-100"></div>
+
+  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide">SVG + Tailwind shadow class</p>
+  <div class="flex gap-6 items-end flex-wrap">
+    <figure class="flex flex-col items-center gap-2">
+      <svg class="shadow-md" width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="60" height="60" rx="10" fill="#6366f1" />
+      </svg>
+      <figcaption class="text-xs text-gray-400 text-center">shadow-md</figcaption>
+    </figure>
+
+    <figure class="flex flex-col items-center gap-2">
+      <svg class="shadow-lg" width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="60" height="60" rx="10" fill="#f43f5e" />
+      </svg>
+      <figcaption class="text-xs text-gray-400 text-center">shadow-lg</figcaption>
+    </figure>
+  </div>
+
+  <div class="border-t border-gray-100"></div>
+
+  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide">HTML</p>
+  <div class="flex gap-6 items-end flex-wrap">
+    <figure class="flex flex-col items-center gap-2">
+      <p style="font-size:32px;font-weight:700;text-shadow:3px 3px 6px rgba(0,0,0,0.3);margin:10px 0;line-height:1;">Aa</p>
+      <figcaption class="text-xs text-gray-400 text-center">text-shadow</figcaption>
+    </figure>
+  </div>
+</div>

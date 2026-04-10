@@ -7,6 +7,8 @@ import StyledInlineText from "../components/StyledInlineText.astro";
 import RotatedCards from "../components/RotatedCards.astro";
 import DiagonalButtons from "../components/DiagonalButtons.astro";
 import TiltCard from "../components/TiltCard.astro";
+import SVGDropShadow from "../components/SVGDropShadow.astro";
+import SequenzaShader from "../components/SequenzaShader";
 import img from "../assets/image.png";
 import IssueTitle from "../components/IssueTitle.astro";
 import timestamps from "../data/component-timestamps.json";
@@ -39,6 +41,8 @@ const pageTs = ts("src/pages/index.astro");
 const styledTs = ts("src/components/StyledInlineText.astro");
 const diagonalTs = ts("src/components/DiagonalButtons.astro");
 const rotatedTs = ts("src/components/RotatedCards.astro");
+const svgShadowTs = ts("src/components/SVGDropShadow.astro");
+const sequenzaTs = ts("src/components/SequenzaShader.tsx");
 ---
 
 <Layout>
@@ -46,11 +50,11 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
     href="https://github.com/YottaYocta/paper-localhost-snapshot"
     target="_blank"
     rel="noopener noreferrer"
-    class="fixed top-4 left-6 text-gray-500 opacity-70 hover:opacity-100 transition-opacity duration-200 z-50"
+    class="fixed right-6 top-4 lg:left-6 text-gray-500 opacity-70 hover:opacity-100 transition-opacity duration-200 z-50"
     >Github Source</a
   >
   <main
-    class="min-h-screen flex flex-col justify-center items-center px-12 py-16"
+    class="min-h-screen flex flex-col justify-center items-center lg:px-12 px-6 py-16"
   >
     <div class="w-full max-w-6xl">
       <div class="lg:flex gap-20 pb-3 border-b border-gray-200 hidden">
@@ -71,7 +75,6 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
         </div>
       </div>
 
-      <!-- localhost paste -->
       <IssueRow id="localhost-paste">
         <IssueTitle
           slot="title"
@@ -121,7 +124,6 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
         </div>
       </IssueRow>
 
-      <!-- max-width paste -->
       <IssueRow id="max-width-paste">
         <IssueTitle
           slot="title"
@@ -164,7 +166,6 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
         </div>
       </IssueRow>
 
-      <!-- inline styled text -->
       <IssueRow id="inline-styled-text">
         <IssueTitle
           slot="title"
@@ -179,7 +180,6 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
         </div>
       </IssueRow>
 
-      <!-- diagonal buttons -->
       <IssueRow id="diagonal-buttons">
         <IssueTitle
           slot="title"
@@ -195,6 +195,43 @@ const rotatedTs = ts("src/components/RotatedCards.astro");
           to edit. The other uses <code
             class="font-mono text-xs bg-gray-100 px-1 rounded">skew</code
           > and loses its styling
+        </div>
+      </IssueRow>
+
+      <IssueRow id="svg-drop-shadow">
+        <IssueTitle
+          slot="title"
+          id="svg-drop-shadow"
+          ago={svgShadowTs.ago}
+          human={svgShadowTs.human}>Stuff with shadows</IssueTitle
+        >
+        <div slot="component">
+          <SVGDropShadow />
+        </div>
+
+        <div slot="notes">
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">
+            feDropShadow and colored shadow both work; drop-shadow filter not
+            carried over to paper for both images without background and svg
+            elements.
+          </p>
+        </div>
+      </IssueRow>
+
+      <IssueRow id="element-shader">
+        <IssueTitle
+          slot="title"
+          id="element-shader"
+          ago={sequenzaTs.ago}
+          human={sequenzaTs.human}>Interactive element-shader</IssueTitle
+        >
+        <div slot="component">
+          <div class="w-full">
+            <SequenzaShader client:only="react" />
+          </div>
+        </div>
+        <div slot="notes">
+          A multipass webgl shader (GLSL ES3). Produces blank image when copied
         </div>
       </IssueRow>
 
