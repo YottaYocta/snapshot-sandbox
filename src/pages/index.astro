@@ -10,6 +10,7 @@ import TiltCard from "../components/TiltCard.astro";
 import SVGDropShadow from "../components/SVGDropShadow.astro";
 import ImageFilters from "../components/ImageFilters.astro";
 import SequenzaShader from "../components/SequenzaShader";
+import CORSThreadAccordion from "../components/CORSThreadAccordion";
 import img from "../assets/image.png";
 import IssueTitle from "../components/IssueTitle.astro";
 import timestamps from "../data/component-timestamps.json";
@@ -103,8 +104,19 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
               {"<img>"} element
             </figcaption>
           </figure>
+          <figure class="flex flex-col items-center gap-2">
+            <img
+              src="/image.png"
+              alt="public img element"
+              width="100"
+              height="100"
+            />
+            <figcaption class="text-xs text-gray-400">
+              {"<img>"} public
+            </figcaption>
+          </figure>
         </div>
-        <div slot="notes">
+        <div slot="notes" class="flex flex-col gap-8">
           <StepsToReproduce>
             <li>
               Clone the repo:
@@ -123,6 +135,7 @@ const imageFiltersTs = ts("src/components/ImageFilters.astro");
             <li>Copy one of the images in the component column.</li>
             <li>Paste into editor.</li>
           </StepsToReproduce>
+          <CORSThreadAccordion client:only="react" />
         </div>
       </IssueRow>
 

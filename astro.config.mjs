@@ -9,8 +9,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      cors: {
-        origin: "app.paper.design",
+      cors: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Cross-Origin-Resource-Policy": "cross-origin",
       },
     },
   },
